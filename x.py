@@ -69,7 +69,7 @@ def _inital(server):
                 auth = token
             elif desc == "bot":
                 auth = f"Bot {token}"
-            massban("core/users.json", server.id, auth, reason=reason if reason != "null" else None)
+            massban("core/users.txt", server.id, auth, reason=reason if reason != "null" else None)
         elif command == "2":
             scraped = scrape(server)
             print(f"[!] scraped {scraped} member{'' if scraped == 1 else 's'}")
@@ -82,7 +82,7 @@ def scrape(server: discord.Guild):
     for x in range(int(server.member_count) - 1):
         m += 1
         data["scraped"].append(server.members[x].id)
-    y = open("core/users.json", "w")
+    y = open("core/users.txt", "w")
     ifed = json.dumps(data, indent=4)
     y.write(ifed)
     return m
